@@ -21,9 +21,10 @@ export function EditorView({ page, setEditorRef }: Props) {
         () =>
             extensions({
                 useTypography: appContext.prefs.editor.useTypographyExtension,
-                tabSize: appContext.prefs.editor.tabSize
+                tabSize: appContext.prefs.editor.tabSize,
+                customStyles: appContext.prefs.editor.customTextStyles
             }),
-        [appContext.prefs.editor.tabSize, appContext.prefs.editor.useTypographyExtension]
+        [appContext.prefs.editor.tabSize, appContext.prefs.editor.useTypographyExtension, appContext.prefs.editor.customTextStyles]
     );
 
     const content = useMemo(() => JSON.parse(window.api.loadPage(page.fileName)), [page.fileName]);

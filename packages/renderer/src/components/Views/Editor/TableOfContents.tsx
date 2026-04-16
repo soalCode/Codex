@@ -4,6 +4,7 @@ import {
     createStyles,
     Paper,
     rem,
+    ScrollArea,
     Space,
     Text,
     Tooltip,
@@ -27,7 +28,15 @@ const useStyles = createStyles((theme) => ({
         position: "absolute",
         top: "78px",
         zIndex: 3000,
-        maxWidth: "300px"
+        width: "250px",
+        height: "400px",
+        maxWidth: "600px",
+        minWidth: "150px",
+        minHeight: "150px",
+        resize: "both",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column"
     },
     link: {
         display: "block",
@@ -111,17 +120,19 @@ export function TableOfContents(props: { editor: Editor }) {
                         <Text fz="xs">{texts.table_of_contents}</Text>
                         <Space h="sm" />
 
-                        {items.map((item: any, index: any) => (
-                            <Anchor
-                                key={index}
-                                className={classes.link}
-                                href={`#${item.id}`}
-                                pl={item.level * 16}
-                                truncate="end"
-                            >
-                                {item.text}
-                            </Anchor>
-                        ))}
+                        <ScrollArea style={{ flexGrow: 1, paddingRight: "10px" }} type="auto" offsetScrollbars>
+                            {items.map((item: any, index: any) => (
+                                <Anchor
+                                    key={index}
+                                    className={classes.link}
+                                    href={`#${item.id}`}
+                                    pl={item.level * 16}
+                                    truncate="end"
+                                >
+                                    {item.text}
+                                </Anchor>
+                            ))}
+                        </ScrollArea>
                     </Paper>
                 )}
             </Transition>

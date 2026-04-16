@@ -217,27 +217,7 @@ export default function Toolbar({ editor }: Props) {
                             isActive={() => editor.isActive("blockQuote")}
                         />
 
-                        <ToolbarSplit
-                            title={texts.heading}
-                            icon="heading"
-                            onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-                        >
-                            {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <Menu.Item
-                                    key={i}
-                                    onClick={() =>
-                                        editor
-                                            .chain()
-                                            .focus()
-                                            .toggleHeading({ level: i as 1 | 2 | 3 | 4 | 5 | 6 })
-                                            .run()
-                                    }
-                                    icon={<Icon icon={`h-${i}`} />}
-                                >
-                                    {texts.heading_level} {i}
-                                </Menu.Item>
-                            ))}
-                        </ToolbarSplit>
+
 
                         <ToolbarButton
                             title={texts.horizontal_rule}
@@ -518,6 +498,43 @@ export default function Toolbar({ editor }: Props) {
                                 {texts.reset_highlight}
                             </Button>
                         </ToolbarDropdown>
+
+                        <Select
+                            size="xs"
+                            w={140}
+                            icon={<Icon icon="brush" />}
+                            placeholder="Text Style"
+                            data={[
+                                { value: "default", label: "Default" },
+                                ...Object.keys(appContext.prefs.editor.customTextStyles || {})
+                            ]}
+                            value={
+                                editor.getAttributes("textStyle").customStyleName ||
+                                editor.getAttributes("paragraph").customStyleName ||
+                                editor.getAttributes("heading").customStyleName ||
+                                "default"
+                            }
+                            onChange={(value) => {
+                                let chain = editor.chain().focus();
+                                if (value === "default" || value == null) {
+                                    chain = chain.setParagraph().unsetCustomStyle();
+                                } else {
+                                    const styleObj = appContext.prefs.editor.customTextStyles[value];
+                                    if (styleObj && styleObj.tag) {
+                                        if (styleObj.tag === "h1") chain = chain.setHeading({ level: 1 });
+                                        else if (styleObj.tag === "h2") chain = chain.setHeading({ level: 2 });
+                                        else if (styleObj.tag === "h3") chain = chain.setHeading({ level: 3 });
+                                        else if (styleObj.tag === "h4") chain = chain.setHeading({ level: 4 });
+                                        else if (styleObj.tag === "h5") chain = chain.setHeading({ level: 5 });
+                                        else if (styleObj.tag === "h6") chain = chain.setHeading({ level: 6 });
+                                        else if (styleObj.tag === "blockquote") chain = chain.setBlockquote();
+                                        else if (styleObj.tag === "p") chain = chain.setParagraph();
+                                    }
+                                    chain = chain.setCustomStyle(value);
+                                }
+                                chain.run();
+                            }}
+                        />
 
                         <Select
                             size="xs"

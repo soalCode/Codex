@@ -35,7 +35,7 @@ export function App() {
     const fakeEditor = useRef<Editor>(
         new Editor({
             editable: false,
-            extensions: extensions({ useTypography: false, tabSize: 4 })
+            extensions: extensions({ useTypography: false, tabSize: 4, customStyles: {} })
         })
     );
 

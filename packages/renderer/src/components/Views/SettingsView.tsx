@@ -11,13 +11,14 @@ import {
     Select,
     Space,
     TextInput,
+    Textarea,
     Title,
     Tooltip,
     Transition,
     useMantineTheme
 } from "@mantine/core";
 import { Icon } from "components/Icon";
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { hljsStyles } from "types/hljsStyles";
 import { SupportedLocales, locales } from "common/Locales";
 import { AppContext } from "types/AppStore";
@@ -40,6 +41,9 @@ export function SettingsView(props: { startPrefs: Prefs }) {
     Lowlight.registerLanguage("cpp", cpp);
     const exampleCode =
         '#include <iostream>\n\nusing namespace std;\n\nint main(int argc, char* argv[]) {\n\n    /* An annoying "Hello World" example */\n    cout << "Hello, World!" << endl;\n\n}';
+
+    const [customStylesJson, setCustomStylesJson] = useState(() => JSON.stringify(prefs.editor.customTextStyles, null, 4));
+    const [customStylesError, setCustomStylesError] = useState("");
 
     const codeBlockThemes = useMemo(() => {
         const arr = new Array<Option>();
@@ -272,6 +276,39 @@ export function SettingsView(props: { startPrefs: Prefs }) {
                         );
                     }}
                 />
+                <Title order={6} mt="xl" mb="xs">
+                    Custom Text Styles
+                </Title>
+                <Textarea
+                    minRows={10}
+                    mb="xs"
+                    value={customStylesJson}
+                    error={customStylesError}
+                    onChange={(e) => {
+                        const val = e.currentTarget.value;
+                        setCustomStylesJson(val);
+                        try {
+                            const parsed = JSON.parse(val);
+                            if (!parsed || typeof parsed !== "object") throw new Error();
+                            setCustomStylesError("");
+                            modifyPrefs((p) => {
+                                p.editor.customTextStyles = parsed;
+                            });
+                        } catch {
+                            setCustomStylesError("Invalid JSON format");
+                        }
+                    }}
+                />
+                <Alert
+                    p="xs"
+                    mt="xs"
+                    mb="xl"
+                    icon={<Icon icon="info-circle" vAlign="-3px" />}
+                    color="blue"
+                >
+                    Define Custom Styles for the Toolbar in raw JSON map form. Reload to see them.
+                </Alert>
+
                 <Alert
                     p="xs"
                     mt="xs"

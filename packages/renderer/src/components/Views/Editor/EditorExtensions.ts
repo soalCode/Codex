@@ -26,8 +26,9 @@ import { CustomLink } from "./extensions/CustomLink";
 import { CustomCode } from "./extensions/CustomCode";
 import { CustomTable } from "./extensions/CustomTable";
 import { ResizableImage } from "./extensions/ResizableImage/ResizableImage";
+import { CustomStyle } from "./extensions/CustomStyle";
 
-export function extensions(options: { useTypography: boolean; tabSize: number }) {
+export function extensions(options: { useTypography: boolean; tabSize: number; customStyles: Record<string, Record<string, string>> }) {
     const e = [
         StarterKit.configure({
             codeBlock: false,
@@ -85,7 +86,10 @@ export function extensions(options: { useTypography: boolean; tabSize: number })
         Markdown.configure({
             html: true
         }),
-        FontSize
+        FontSize,
+        CustomStyle.configure({
+            customStyles: options.customStyles
+        })
     ] as Extensions;
 
     if (options.useTypography) e.push(Typography);
