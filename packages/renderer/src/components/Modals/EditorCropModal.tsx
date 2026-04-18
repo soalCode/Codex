@@ -33,8 +33,8 @@ export function EditorCropModal({ state, onClose }: Props) {
         const canvas = document.createElement("canvas");
         const scaleX = imageRef.current.naturalWidth / imageRef.current.width;
         const scaleY = imageRef.current.naturalHeight / imageRef.current.height;
-        canvas.width = crop.width;
-        canvas.height = crop.height;
+        canvas.width = Math.floor(crop.width * scaleX);
+        canvas.height = Math.floor(crop.height * scaleY);
         const ctx = canvas.getContext("2d");
 
         if (ctx) {
@@ -46,8 +46,8 @@ export function EditorCropModal({ state, onClose }: Props) {
                 crop.height * scaleY,
                 0,
                 0,
-                crop.width,
-                crop.height
+                crop.width * scaleX,
+                crop.height * scaleY
             );
 
             const base64Image = canvas.toDataURL("image/png");
