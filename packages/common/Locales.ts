@@ -43,10 +43,13 @@ export type Locale = {
         open_pdf_on_export: string;
         saving_section: string;
         autosave_page_on_switch: string;
+        autosave: string;
+        autosave_interval: string;
         general: string;
         editor: string;
         save_folder: string;
         editor_width: string;
+        toolbar_size: string;
         editor_border: string;
         editor_spellcheck: string;
         save_folder_location: string;
@@ -191,6 +194,7 @@ export type Locale = {
             align_center: string;
             align_justified: string;
             image: string;
+            crop: string;
             paragraph: string;
             blockquote: string;
             heading: string;
@@ -258,6 +262,17 @@ export type Locale = {
             create_link: string;
             url: string;
         };
+        cropModal: {
+            title: string;
+            cancel: string;
+            save: string;
+        };
+        textFinder: {
+            find: string;
+            next: string;
+            previous: string;
+            no_results: string;
+        };
         code_block_collapse: string;
     };
     unsavedChangesDialog: {
@@ -316,13 +331,16 @@ export const locales: Record<SupportedLocales, Locale> = {
             use_typography_extension: "Use Typography extension in the Editor",
             use_typography_description: 'This enables turning things like "(c)" into "©".',
             open_pdf_on_export: "Automatically open PDF after exporting",
-            saving_section: "Saving Pages",
+            saving_section: "Saving",
             autosave_page_on_switch:
                 "Automatically save the current page when switching between pages/exiting the editor",
+            autosave: "Auto Save",
+            autosave_interval: "Auto Save Interval (minutes)",
             general: "General",
             editor: "Editor",
             save_folder: "Save Folder",
             editor_width: "Editor Width",
+            toolbar_size: "Toolbar Size (requires restart)",
             editor_border: "Editor Border",
             editor_spellcheck: "Editor Spellcheck",
             save_folder_location: "Save Folder Location",
@@ -486,6 +504,7 @@ export const locales: Record<SupportedLocales, Locale> = {
                 align_center: "Align Center",
                 align_justified: "Align Justified",
                 image: "Insert/Replace Image",
+                crop: "Crop Image",
                 paragraph: "Set to Paragraph",
                 blockquote: "Set to Block Quote",
                 heading: "Heading",
@@ -554,6 +573,17 @@ export const locales: Record<SupportedLocales, Locale> = {
                 create_link: "Create Link",
                 url: "URL"
             },
+            cropModal: {
+                title: "Crop Image",
+                cancel: "Cancel",
+                save: "Save Crop"
+            },
+            textFinder: {
+                find: "Find in document...",
+                next: "Next",
+                previous: "Previous",
+                no_results: "No results"
+            },
             code_block_collapse: "Collapse"
         },
         unsavedChangesDialog: {
@@ -609,10 +639,13 @@ export const locales: Record<SupportedLocales, Locale> = {
             open_pdf_on_export: "完成导出后自动打开PDF文件",
             saving_section: "保存页面",
             autosave_page_on_switch: "页面切换/退出编辑器时自动保存当前页面",
+            autosave: "自动保存",
+            autosave_interval: "自动保存间隔(分钟)",
             general: "基础设置",
             editor: "编辑器",
             save_folder: "保存文件夹",
             editor_width: "编辑器宽度",
+            toolbar_size: "Toolbar Size (requires restart)",
             editor_border: "编辑器边框",
             editor_spellcheck: "拼写检查",
             save_folder_location: "保存位置",
@@ -775,6 +808,7 @@ export const locales: Record<SupportedLocales, Locale> = {
                 align_center: "居中对齐",
                 align_justified: "两端对齐",
                 image: "插入/替换图片",
+                crop: "Crop Image",
                 paragraph: "设置为段落",
                 blockquote: "设置为块引用",
                 heading: "标题",
@@ -842,6 +876,17 @@ export const locales: Record<SupportedLocales, Locale> = {
                 create_link: "创建超链接",
                 url: "URL"
             },
+            cropModal: {
+                title: "Crop Image",
+                cancel: "Cancel",
+                save: "Save"
+            },
+            textFinder: {
+                find: "Find in document...",
+                next: "Next",
+                previous: "Previous",
+                no_results: "No results"
+            },
             code_block_collapse: "折叠"
         },
         unsavedChangesDialog: {
@@ -897,10 +942,13 @@ export const locales: Record<SupportedLocales, Locale> = {
             saving_section: "Сохранение страниц",
             autosave_page_on_switch:
                 "Автоматически сохранять текущую страницу при переключении между страницами или выходе из редактора",
+            autosave: "Auto Save",
+            autosave_interval: "Auto Save Interval (minutes)",
             general: "Главная",
             editor: "Редактор",
             save_folder: "Сохранить папку",
             editor_width: "Ширина редактора",
+            toolbar_size: "Toolbar Size (requires restart)",
             editor_border: "Граница редактора",
             editor_spellcheck: "Проверка орфографии в редакторе",
             save_folder_location: "Место сохранения папок",
@@ -1063,6 +1111,7 @@ export const locales: Record<SupportedLocales, Locale> = {
                 align_center: "Выровнять по центру",
                 align_justified: "Выравнивание по ширине",
                 image: "Вставить/заменить изображение",
+                crop: "Crop Image",
                 paragraph: "Установить на абзац",
                 blockquote: "Установить на блок цитаты",
                 heading: "Заголовок",
@@ -1130,6 +1179,17 @@ export const locales: Record<SupportedLocales, Locale> = {
                 cancel: "Отмена",
                 create_link: "Создать ссылку",
                 url: "URL"
+            },
+            cropModal: {
+                title: "Crop Image",
+                cancel: "Cancel",
+                save: "Save"
+            },
+            textFinder: {
+                find: "Find in document...",
+                next: "Next",
+                previous: "Previous",
+                no_results: "No results"
             },
             code_block_collapse: "Свернуть"
         },

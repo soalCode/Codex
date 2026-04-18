@@ -8,6 +8,8 @@ class GeneralPrefs {
     theme: "light" | "dark" = "light";
     titlebarStyle: "custom" | "native" = "custom";
     autoSaveOnPageSwitch = true;
+    autoSave = false;
+    autoSaveInterval = 5;
 }
 
 class EditorPrefs {
@@ -21,6 +23,7 @@ class EditorPrefs {
     recentCodeLangs: string[] = [];
     codeWordWrap = false;
     tabSize = 4;
+    toolbarSize: "sm" | "md" | "lg" = "md";
     customTextStyles: Record<string, Record<string, string>> = {
         Normal: {
             "tag": "p",

@@ -73,6 +73,7 @@ export default function Toolbar({ editor }: Props) {
     return (
         <>
             <ToolbarToggler onClick={() => setShow(!show)} />
+            {/* scale/zoom changes according to toolbarSize setting */}
             <div
                 style={{
                     display: show ? "block" : "none",
@@ -80,7 +81,13 @@ export default function Toolbar({ editor }: Props) {
                     top: "0px",
                     zIndex: 200,
                     marginLeft: "64px",
-                    marginRight: "64px"
+                    marginRight: "64px",
+                    zoom:
+                        appContext.prefs.editor.toolbarSize === "sm"
+                            ? 0.85
+                            : appContext.prefs.editor.toolbarSize === "lg"
+                            ? 1.25
+                            : 1.0
                 }}
             >
                 <Paper
@@ -203,6 +210,20 @@ export default function Toolbar({ editor }: Props) {
                             title={texts.image}
                             icon="photo-plus"
                             onClick={() => modalContext.openEditorImageModal({ editor: editor })}
+                        />
+                        <ToolbarButton
+                            title={texts.crop}
+                            icon="crop"
+                            onClick={() => {
+                                const imageAttrs = editor.getAttributes("image");
+                                if (imageAttrs.src) {
+                                    modalContext.openEditorCropModal({
+                                        editor,
+                                        src: imageAttrs.src
+                                    });
+                                }
+                            }}
+                            disabled={() => !editor.isActive("image")}
                         />
 
                         <ToolbarButton
