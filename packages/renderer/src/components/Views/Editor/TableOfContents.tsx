@@ -106,10 +106,21 @@ export function TableOfContents(props: { editor: Editor }) {
         };
     }, [props.editor, handleUpdate]);
 
+    useEffect(() => {
+        const handleClose = () => setOpen(false);
+        window.addEventListener("close-toc", handleClose);
+        return () => window.removeEventListener("close-toc", handleClose);
+    }, []);
+
+    const toggleOpen = () => {
+        if (!open) window.dispatchEvent(new Event("close-notes-list"));
+        setOpen(!open);
+    };
+
     return (
         <>
             <Tooltip withArrow label={texts.table_of_contents} position="right">
-                <ActionIcon className={classes.icon} onClick={() => setOpen(!open)}>
+                <ActionIcon className={classes.icon} onClick={toggleOpen}>
                     <Icon icon="list-search" />
                 </ActionIcon>
             </Tooltip>

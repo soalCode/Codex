@@ -238,7 +238,12 @@ export default function Toolbar({ editor }: Props) {
                             isActive={() => editor.isActive("blockQuote")}
                         />
 
-
+                        <ToolbarButton
+                            title={locales[appContext.prefs.general.locale].editor.revision_notes}
+                            icon="notes"
+                            onClick={() => editor.chain().focus().toggleRevisionNote().run()}
+                            isActive={() => editor.isActive("revisionNote")}
+                        />
 
                         <ToolbarButton
                             title={texts.horizontal_rule}

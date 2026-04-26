@@ -4,6 +4,19 @@
 
 ### ✨ Features & Enhancements
 
+-   **Revision Notes System**
+
+    -   Added the ability to mark specific text selections as "Revision Notes" using the `CTRL+SHIFT+R` (`Cmd+Shift+R` on Mac) shortcut.
+    -   A new "Revision Notes" panel has been added to the editor's sidebar (accessible via a dedicated icon).
+    -   Clicking on a note in the sidebar will automatically scroll the editor and focus on the exact position of the revision.
+    -   The visual style of these notes (background color, borders, etc.) can now be dynamically configured via the `Prefs.ts` file under `revisionNoteStyle`.
+
+-   **Section & Paragraph Reordering**
+
+    -   You can now seamlessly reorganize your document's structure without breaking formatting.
+    -   Hovering over any heading (`H1`, `H2`, `H3`) will reveal discrete "Up" and "Down" arrows on the left side.
+    -   Clicking these arrows will instantly move the entire section (the heading along with all of its inner paragraphs and content) up or down, automatically swapping places with adjacent sections.
+
 -   **Text Finder (Search in Page)**
 
     -   Added a fully functional "Find in Document" overlay accessible via `CTRL+F` / `CMD+F`.

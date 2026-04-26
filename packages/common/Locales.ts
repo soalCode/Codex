@@ -274,6 +274,10 @@ export type Locale = {
             no_results: string;
         };
         code_block_collapse: string;
+        revision_notes: string;
+        no_revision_notes: string;
+        move_up: string;
+        move_down: string;
     };
     unsavedChangesDialog: {
         title: (name: string) => string;
@@ -584,7 +588,11 @@ export const locales: Record<SupportedLocales, Locale> = {
                 previous: "Previous",
                 no_results: "No results"
             },
-            code_block_collapse: "Collapse"
+            code_block_collapse: "Collapse",
+            revision_notes: "Revision Notes",
+            no_revision_notes: "No revision notes found",
+            move_up: "Move Up",
+            move_down: "Move Down"
         },
         unsavedChangesDialog: {
             title: (name: string) => `You have unsaved changes to "${name}"`,
@@ -887,7 +895,11 @@ export const locales: Record<SupportedLocales, Locale> = {
                 previous: "Previous",
                 no_results: "No results"
             },
-            code_block_collapse: "折叠"
+            code_block_collapse: "折叠",
+            revision_notes: "Revision Notes",
+            no_revision_notes: "No revision notes found",
+            move_up: "Move Up",
+            move_down: "Move Down"
         },
         unsavedChangesDialog: {
             title: (name: string) => `您对 "${name}" 有未保存的更改`,
@@ -1191,7 +1203,11 @@ export const locales: Record<SupportedLocales, Locale> = {
                 previous: "Previous",
                 no_results: "No results"
             },
-            code_block_collapse: "Свернуть"
+            code_block_collapse: "Свернуть",
+            revision_notes: "Revision Notes",
+            no_revision_notes: "No revision notes found",
+            move_up: "Move Up",
+            move_down: "Move Down"
         },
         unsavedChangesDialog: {
             title: (name: string) => `Вы имеете несохранённые изменения в "${name}"`,

@@ -7,6 +7,7 @@ import { Editor, EditorContent, useEditor } from "@tiptap/react";
 import Toolbar from "./Toolbar/Toolbar";
 import { extensions } from "./EditorExtensions";
 import { TableOfContents } from "./TableOfContents";
+import { RevisionNotesList } from "./RevisionNotesList";
 import { EditorStyles } from "./EditorStyles";
 import { TextFinder } from "./TextFinder";
 
@@ -83,6 +84,7 @@ export function EditorView({ page, setEditorRef }: Props) {
                 <Toolbar editor={editor} />
 
                 <TableOfContents editor={editor} />
+                <RevisionNotesList editor={editor} />
 
                 <Container
                     size={appContext.prefs.editor.width}

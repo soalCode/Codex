@@ -28,6 +28,7 @@ import { CustomTable } from "./extensions/CustomTable";
 import { ResizableImage } from "./extensions/ResizableImage/ResizableImage";
 import { CustomStyle } from "./extensions/CustomStyle";
 import { Search } from "./extensions/Search";
+import { RevisionNote } from "./extensions/RevisionNote";
 
 export function extensions(options: { useTypography: boolean; tabSize: number; customStyles: Record<string, Record<string, string>> }) {
     const e = [
@@ -89,6 +90,7 @@ export function extensions(options: { useTypography: boolean; tabSize: number; c
         }),
         FontSize,
         Search,
+        RevisionNote,
         CustomStyle.configure({
             customStyles: options.customStyles
         })

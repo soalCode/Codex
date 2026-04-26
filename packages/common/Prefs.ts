@@ -61,6 +61,11 @@ class EditorPrefs {
             "color": "#000000"
         }
     };
+    revisionNoteStyle: Record<string, string> = {
+        "background-color": "rgba(255, 235, 59, 0.3)",
+        "color": "inherit",
+        "border-bottom": "2px dashed #fbc02d"
+    };
 }
 
 class MiscPrefs {
