@@ -17,7 +17,7 @@ ls -lt ~/.config/codex/notes/ | head -n 5
 ```
 3. Copy that random filename.
 
-#### Step 3: Overwrite the file (The Transplant)
+#### Step 3: Overwrite the file
 Now, we will overwrite the empty registered note with your old note data. 
 Run the `cp` (copy) command in your terminal like this:
 
