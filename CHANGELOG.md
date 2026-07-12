@@ -58,7 +58,7 @@
 -   **Batch File Operations**
     -   Enabled multi-select in the sidebar allowing users to select multiple pages/folders at once.
     -   Added the ability to batch export all selected pages to PDF or Markdown directly from the Context Menu.
-    -   Introduced an advanced "Delete from disk" option when deleting files. Checking this box recursively and permanently removes the underlying `.json` files from the host machine's physical storage.
+    -   Introduced an advanced "Delete from disk" option when deleting files. Checking this box recursively and permanently removes the underlying files from the host machine's physical storage.
 
 -   **Code Block Enhancements**
     -   The "Code Block" button in the toolbar now intelligently defaults to `plaintext` when inserted without selecting a specific language.
