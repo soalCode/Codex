@@ -29,6 +29,7 @@ export function App() {
 
     const [view, setView] = useState<View>("home");
     const [activePage, setActivePage] = useState<Page | null>(null);
+    const [selectedPages, setSelectedPages] = useState<Page[]>([]);
     const unsavedChanges = useRef(false);
 
     const editorRef = useRef<Editor | null>(null);
@@ -263,6 +264,44 @@ export function App() {
         });
     };
 
+    const exportMultiplePages = async (pages: Page[], type: "pdf" | "md") => {
+        const dir = window.api.getDirectory();
+        if (dir == undefined) return;
+
+        for (let i = 0; i < pages.length; i++) {
+            const page = pages[i];
+            if (activePage != null && page.id == activePage.id) {
+                await saveActivePage();
+            }
+
+            fakeEditor.current.commands.setContent(JSON.parse(window.api.loadPage(page.fileName)));
+
+            if (type == "pdf") {
+                await window.api.exportOneOfManyPDF(dir, page);
+            } else {
+                window.api.exportOneOfManyMD(
+                    dir,
+                    page,
+                    fakeEditor.current.storage.markdown.getMarkdown()
+                );
+            }
+        }
+
+        fakeEditor.current.commands.setContent("");
+
+        notifications.show({
+            message: (
+                <Text truncate>
+                    Exported {pages.length} pages
+                </Text>
+            ),
+            color: "orange",
+            icon: <Icon icon="file-check" />,
+            autoClose: 2000,
+            withBorder: true
+        });
+    };
+
     //#endregion CONTEXT FUNCTIONS
 
     window.api.onBeforeExit(async () => {
@@ -419,7 +458,10 @@ export function App() {
                 modifySave: modifySave,
                 draggedItem: null,
                 exportPage: exportPage,
-                exportAllPagesIn: exportAllPagesIn
+                exportAllPagesIn: exportAllPagesIn,
+                exportMultiplePages: exportMultiplePages,
+                selectedPages: selectedPages,
+                setSelectedPages: setSelectedPages
             }}
         >
             <link

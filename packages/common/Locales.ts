@@ -83,6 +83,7 @@ export type Locale = {
         export_page_md: string;
         export_all_pages_pdf: string;
         export_all_pages_md: string;
+        delete_multiple_items: (count: number) => string;
     };
     home: {
         version: string;
@@ -174,6 +175,8 @@ export type Locale = {
         delete_item_title: string;
         delete_page_text: (itemName: string) => string;
         delete_folder_text: (itemName: string) => string;
+        delete_multiple_text: (count: number) => string;
+        delete_from_disk_checkbox: string;
     };
     editor: {
         table_of_contents: string;
@@ -383,7 +386,8 @@ export const locales: Record<SupportedLocales, Locale> = {
             export_page_pdf: "Export Page as PDF",
             export_page_md: "Export Page as MD",
             export_all_pages_pdf: "Export All Pages as PDF",
-            export_all_pages_md: "Export All Pages as MD"
+            export_all_pages_md: "Export All Pages as MD",
+            delete_multiple_items: (count) => `Delete ${count} Items`
         },
         home: {
             version: "Version",
@@ -487,7 +491,10 @@ export const locales: Record<SupportedLocales, Locale> = {
             delete_page_text: (itemName: string) =>
                 `Are you sure you want to delete "${itemName}"?`,
             delete_folder_text: (itemName: string) =>
-                `Are you sure you want to delete "${itemName}" and all of its children?`
+                `Are you sure you want to delete "${itemName}" and all of its children?`,
+            delete_multiple_text: (count: number) =>
+                `Are you sure you want to delete these ${count} items?`,
+            delete_from_disk_checkbox: "Also permanently delete from disk"
         },
         editor: {
             table_of_contents: "Table of Contents",
@@ -691,7 +698,8 @@ export const locales: Record<SupportedLocales, Locale> = {
             export_page_pdf: "导出为PDF",
             export_page_md: "导出为Markdown",
             export_all_pages_pdf: "导出所有页面为PDF",
-            export_all_pages_md: "导出所有页面为Markdown"
+            export_all_pages_md: "导出所有页面为Markdown",
+            delete_multiple_items: (count) => `Delete ${count} Items`
         },
         home: {
             version: "版本号",
@@ -795,7 +803,10 @@ export const locales: Record<SupportedLocales, Locale> = {
             },
             delete_item_title: "删除项",
             delete_page_text: (itemName: string) => `你确定要删除 "${itemName}" 吗?`,
-            delete_folder_text: (itemName: string) => `你确定要删除 "${itemName}" 及其所有子项吗?`
+            delete_folder_text: (itemName: string) => `你确定要删除 "${itemName}" 及其所有子项吗?`,
+            delete_multiple_text: (count: number) =>
+                `Are you sure you want to delete these ${count} items?`,
+            delete_from_disk_checkbox: "Also permanently delete from disk"
         },
         editor: {
             table_of_contents: "Table of Contents",
@@ -999,7 +1010,8 @@ export const locales: Record<SupportedLocales, Locale> = {
             export_page_pdf: "Экспорт страницы в PDF",
             export_page_md: "Экспорт страницы в MD",
             export_all_pages_pdf: "Экспорт всех страниц в PDF",
-            export_all_pages_md: "Экспорт всех страниц в MD"
+            export_all_pages_md: "Экспорт всех страниц в MD",
+            delete_multiple_items: (count) => `Удалить ${count} элементы`
         },
         home: {
             version: "Версия",
@@ -1102,7 +1114,10 @@ export const locales: Record<SupportedLocales, Locale> = {
             delete_item_title: "Удалить элемент",
             delete_page_text: (itemName: string) => `Вы уверены, что хотите удалить "${itemName}"?`,
             delete_folder_text: (itemName: string) =>
-                `Вы уверены, что хотите удалить "${itemName}" вместе со всеми его дочерними элементами?`
+                `Вы уверены, что хотите удалить "${itemName}" вместе со всеми его дочерними элементами?`,
+            delete_multiple_text: (count: number) =>
+                `Вы уверены, что хотите удалить эти ${count} элементов?`,
+            delete_from_disk_checkbox: "Также навсегда удалить с диска"
         },
         editor: {
             table_of_contents: "Оглавление",

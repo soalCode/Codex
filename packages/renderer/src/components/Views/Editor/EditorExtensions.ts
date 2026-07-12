@@ -86,7 +86,9 @@ export function extensions(options: { useTypography: boolean; tabSize: number; c
         MathInline,
         //Canvas,
         Markdown.configure({
-            html: true
+            html: true,
+            transformPastedText: false,
+            transformCopiedText: false
         }),
         FontSize,
         Search,

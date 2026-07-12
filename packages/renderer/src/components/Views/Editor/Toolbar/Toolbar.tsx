@@ -277,7 +277,7 @@ export default function Toolbar({ editor }: Props) {
                         <ToolbarSplit
                             title={texts.code_block}
                             icon="source-code"
-                            onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+                            onClick={() => editor.chain().focus().toggleCodeBlock({ language: "plaintext" }).run()}
                         >
                             <Menu.Label>{texts.codeBlockMenu.all_languages}</Menu.Label>
 
