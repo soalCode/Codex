@@ -55,8 +55,18 @@
 -   **Localization Coverage**
     -   Added and integrated all strings relating to Auto-Save, Cropper, Editor Width/Border, Text Finder, and Toolbar sizing across all language dictionaries (English `en_US`, Russian `ru_RU`, Simplified Chinese `zh_CN`).
 
+-   **Batch File Operations**
+    -   Enabled multi-select in the sidebar allowing users to select multiple pages/folders at once.
+    -   Added the ability to batch export all selected pages to PDF or Markdown directly from the Context Menu.
+    -   Introduced an advanced "Delete from disk" option when deleting files. Checking this box recursively and permanently removes the underlying `.json` files from the host machine's physical storage.
+
+-   **Code Block Enhancements**
+    -   The "Code Block" button in the toolbar now intelligently defaults to `plaintext` when inserted without selecting a specific language.
+    -   Completely revamped Syntax Highlighting integration (`LowlightPlugin`) to properly utilize all generated `highlight.js` CSS classes. This resolves widespread syntax coloring omissions across almost all languages (e.g., PowerShell keywords are now colored vividly and correctly).
+
 ### 🐛 Bug Fixes
 
 -   Prevented `CTRL+F` from causing duplicate component mounts if the finder was already active.
 -   Resolved Z-Index overlapping conflicts between the floating Text Finder and the sticky Editor Toolbar.
 -   Fixed an issue where the generic Auto-Save feature could crash if trigged while switching components globally.
+-   Resolved a critical syntax error in the internal `ResizableImage` component that broke Editor Copy/Paste functionality. Users can now copy and paste text, formatting, images, and GIFs seamlessly both inside the app and to external editors like MS Word.
